@@ -21,17 +21,17 @@ public class DBHelper extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String CREATE_TABLE_ACCOUNT_INFO = "CREATE TABLE " + AccountInfo.TABLE + "("
                 + AccountInfo.ACC_NO + " TEXT PRIMARY KEY ,"
-                + AccountInfo.BANK + " TEXT ,"
-                + AccountInfo.ACC_HOLDER + " TEXT ,"
-                + AccountInfo.INIT_BAL + " REAL );";
+                + AccountInfo.BANK + " TEXT NOT NULL,"
+                + AccountInfo.ACC_HOLDER + " TEXT NOT NULL,"
+                + AccountInfo.INIT_BAL + " REAL NOT NULL);";
         sqLiteDatabase.execSQL(CREATE_TABLE_ACCOUNT_INFO);
 
         String CREATE_TABLE_LOG_INFO = "CREATE TABLE " +  LogsInfo.TABLE + "("
                 + LogsInfo.KEY + " INTEGER PRIMARY KEY ,"
-                + LogsInfo.DATE + " TEXT ,"
-                + LogsInfo.TYPE + " BOOLEAN ,"
-                + LogsInfo.AMOUNT + " REAL ,"
-                + LogsInfo.ACC_NO + " TEXT ,"
+                + LogsInfo.DATE + " TEXT NOT NULL,"
+                + LogsInfo.TYPE + " BOOLEAN NOT NULL,"
+                + LogsInfo.AMOUNT + " REAL NOT NULL,"
+                + LogsInfo.ACC_NO + " TEXT NOT NULL,"
                 + "FOREIGN KEY (" + LogsInfo.ACC_NO + ") REFERENCES " + AccountInfo.TABLE + "(" +AccountInfo.ACC_NO +  "));";
         sqLiteDatabase.execSQL(CREATE_TABLE_LOG_INFO);
     }
